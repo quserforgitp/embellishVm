@@ -290,6 +290,15 @@ cat >> ~/.vimrc <<- EOF
 colorscheme badwolf    " Set color scheme
 EOF
 
+echo -n "$(tput setaf 6)[!!!]$(tput sgr0) Attemping to install Vim Plugins"
+    echo -n "."; sleep 1s; echo -n ".";sleep 1s; echo -n ".";echo
+    vim +PluginInstall +qall
+echo
+echo -n "$(tput setaf 6 bold)"
+echo -n "["; sleep 1s;echo -n "!"; sleep 1s; echo -n "!";sleep 1s; echo -n "!";sleep 1s;echo -n "]";sleep 1s
+echo -n "$(tput sgr0)"
+echo -n "$(tput bold) The process has finished $(tput blink)successfully$(tput sgr0)"
+    echo -n "!"; sleep 1s; echo -n "!";sleep 1s; echo -n "!";echo
 
 read -p "Press ENTER to continue..."
 echo
