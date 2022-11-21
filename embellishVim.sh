@@ -231,8 +231,6 @@ if !has('nvim')
 endif
 
 set background=dark     " Set background 
-colorscheme badwolf    " Set color scheme
-
 
 " ------------------------------------------------------------
 " Key mappings
@@ -287,6 +285,11 @@ EOF
 echo -n "$(tput setaf 6)[!]$(tput sgr0) Attemping to install Vim pluggins"
     echo -n "."; sleep 1s; echo -n ".";sleep 1s; echo -n ".";echo
     vim +PluginInstall +qall
+
+cat >> ~/.vimrc <<- EOF
+colorscheme badwolf    " Set color scheme
+EOF
+
 
 read -p "Press ENTER to continue..."
 echo
