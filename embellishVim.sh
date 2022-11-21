@@ -83,10 +83,19 @@ else
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim    
 fi
 
-echo
-echo  "$(tput setaf 9)[!!!]$(tput sgr0) Generating the ~/.vimrc file"
-echo -n "."; sleep 1s; echo -n ".";sleep 1s; echo -n ".";echo
-sleep 1s
+
+
+
+PS3="Do you want me to copy my .vimrc file in yours? "
+
+select i in YES NO
+do
+    case $i in 
+        "YES")
+            echo
+            echo  "$(tput setaf 9)[!!!]$(tput sgr0) Generating the ~/.vimrc file"
+            echo -n "."; sleep 1s; echo -n ".";sleep 1s; echo -n ".";echo
+            sleep 1s
 cat >> ~/.vimrc <<- EOF
 " HIGHLIGHTING IDE
 " ------------------------------------------------------------
@@ -227,7 +236,7 @@ set shiftwidth=4        " How many columns of whitespace a “level of indentati
 set expandtab           " Use spaces when tabbing
 
 if !has('nvim')
-    set termwinsize=12x0    " Set terminal size
+set termwinsize=12x0    " Set terminal size
 endif
 
 set background=dark     " Set background 
@@ -282,26 +291,44 @@ set title
 "set cursorcolumn
 EOF
 
-echo -n "$(tput setaf 6)[!]$(tput sgr0) Attemping to install Vim pluggins"
-    echo -n "."; sleep 1s; echo -n ".";sleep 1s; echo -n ".";echo
-    vim +PluginInstall +qall
+            echo -n "$(tput setaf 6)[!]$(tput sgr0) Attemping to install Vim pluggins"
+            echo -n "."; sleep 1s; echo -n ".";sleep 1s; echo -n ".";echo
+            vim +PluginInstall +qall
 
 cat >> ~/.vimrc <<- EOF
 colorscheme badwolf    " Set color scheme
 EOF
-
-echo -n "$(tput setaf 6)[!!!]$(tput sgr0) Attemping to install Vim Plugins"
-    echo -n "."; sleep 1s; echo -n ".";sleep 1s; echo -n ".";echo
-    vim +PluginInstall +qall
-echo
-echo -n "$(tput setaf 6 bold)"
-echo -n "["; sleep 1s;echo -n "!"; sleep 1s; echo -n "!";sleep 1s; echo -n "!";sleep 1s;echo -n "]";sleep 1s
-echo -n "$(tput sgr0)"
-echo -n "$(tput bold) The process has finished $(tput blink)successfully$(tput sgr0)"
-    echo -n "!"; sleep 1s; echo -n "!";sleep 1s; echo -n "!";echo
-
-read -p "Press ENTER to continue..."
-echo
-echo "$(tput bold setaf 2)EnJoy Typing code in your New ToY BoY !!!!$(tput sgr0)"
-echo $(tput cnorm)
+            echo
+            echo -n "$(tput setaf 6 bold)"
+            echo -n "["; sleep 1s;echo -n "!"; sleep 1s; echo -n "!";sleep 1s; echo -n "!";sleep 1s;echo -n "]";sleep 1s
+            echo -n "$(tput sgr0)"
+            echo -n "$(tput bold) The process has finished $(tput blink)successfully$(tput sgr0)"
+            echo -n "!"; sleep 1s; echo -n "!";sleep 1s; echo -n "!";echo
+            read -p "press enter to continue..."
+            echo
+            echo "$(tput bold setaf 2)enjoy typing code in your new toy boy !!!!$(tput sgr0)"
+            echo $(tput cnorm)
+            exit 0
+            ;;
+        "NO")
+            echo -n "$(tput setaf 6)[!!!]$(tput sgr0) Attemping to install Vim Plugins"
+            echo -n "."; sleep 1s; echo -n ".";sleep 1s; echo -n ".";echo
+            vim +PluginInstall +qall
+            echo
+            echo -n "$(tput setaf 6 bold)"
+            echo -n "["; sleep 1s;echo -n "!"; sleep 1s; echo -n "!";sleep 1s; echo -n "!";sleep 1s;echo -n "]";sleep 1s
+            echo -n "$(tput sgr0)"
+            echo -n "$(tput bold) The process has finished $(tput blink)successfully$(tput sgr0)"
+            echo -n "!"; sleep 1s; echo -n "!";sleep 1s; echo -n "!";echo
+            read -p "press enter to continue..."
+            echo
+            echo "$(tput bold setaf 2)enjoy typing code in your new toy boy !!!!$(tput sgr0)"
+            echo $(tput cnorm)
+            exit 0
+            ;;
+        *)
+            echo "$(tput setaf 1)[!]$(tput sgr0) invalid option $REPLY"
+            ;;
+    esac
+done
 exit 0
