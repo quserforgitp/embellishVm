@@ -269,6 +269,10 @@ set title
 "set cursorcolumn
 EOF
 
+echo -n "$(tput setaf 6)[!]$(tput sgr0) Attemping to install Vim pluggins"
+    echo -n "."; sleep 1s; echo -n ".";sleep 1s; echo -n ".";echo
+    vim +PluginInstall +qall
+
 read -p "Press ENTER to continue..."
 echo
 echo "$(tput bold setaf 2)EnJoy Typing code in your New ToY BoY !!!!$(tput sgr0)"
