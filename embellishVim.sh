@@ -38,6 +38,21 @@ sleep 1s
 echo
 echo
 
+# is vim installed?
+if command -v vim >/dev/null 2>&1 ; then
+    echo "$(tput setaf 2)[*]$(tput sgr0) vim found !!!"
+    sleep 3s
+
+else
+    echo "$(tput setaf 1)[*]$(tput sgr0) vim not found "
+    echo -n "$(tput setaf 6)[!]$(tput sgr0) Attemping to install vim package"
+    echo -n "."; sleep 1s; echo -n ".";sleep 1s; echo -n ".";echo
+    sudo apt update
+    sudo apt install vim -y    
+    echo $(tput cnorm)
+fi
+
+
 # is git installed?
 if command -v git >/dev/null 2>&1 ; then
     echo "$(tput setaf 2)[*]$(tput sgr0) git found !!!"
