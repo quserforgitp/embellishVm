@@ -67,7 +67,7 @@ else
     echo $(tput cnorm)
 fi
 
-echo $(tput civis)
+echo -n $(tput civis)
 sleep 2s
 
 
